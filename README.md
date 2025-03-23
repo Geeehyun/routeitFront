@@ -4,7 +4,7 @@
 📁 src/
 <br>├── 📁 modules/
 <br>│   ├── 📁 auth/
-<br>│   │   ├── api.js              # 로그인, 회원가입, 비번 찾기 등 API
+<br>│   │   ├── authApi.js              # 로그인, 회원가입, 비번 찾기 등 API
 <br>│   │   ├── store.js            # 로그인 상태, 유저 정보 저장 (Pinia)
 <br>│   │   ├── composables.js      # useAuth() 등 인증 관련 편의 함수
 <br>│   │   └── 📁 views/
