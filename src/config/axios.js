@@ -1,6 +1,7 @@
 // src/lib/axios.js
 import axios from 'axios'
 import {API_BASE_URL} from "./api.js";
+import {useAuthStore} from "@/modules/auth/stores/authStore.js";
 
 const instance = axios.create({
     baseURL: API_BASE_URL, // API 기본 주소
@@ -8,14 +9,18 @@ const instance = axios.create({
     headers: {
         'Content-Type': 'application/json',
     },
-})
+});
 
 // 요청 인터셉터
 instance.interceptors.request.use(
-    (config) => {
-        // 토큰이나 공통 헤더 넣는 곳
+    async (config) => {
+        const auth = useAuthStore();
+        const token = await auth.getToken();
+
+        config.headers.Authorization = `Bearer ${token.accessToken}`;
+;        // 토큰이나 공통 헤더 넣는 곳
         // 예: config.headers.Authorization = `Bearer ${yourToken}`
-        return config
+        return config;
     },
     (error) => {
         return Promise.reject(error)

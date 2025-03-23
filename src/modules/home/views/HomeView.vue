@@ -1,14 +1,14 @@
 <script setup>
 import axios from "../../../config/axios.js";
 
-const testFn = async () => {
-  return await axios.get(`/api/test/index`);
+const goLink = async () => {
+  location.href = '/board';
 }
 </script>
 
 <template>
   <h1>홈</h1>
-  <button @click="testFn">테스트</button>
+  <RouterLink to="/board"><button>게시판으로</button></RouterLink>
 </template>
 
 <style scoped>

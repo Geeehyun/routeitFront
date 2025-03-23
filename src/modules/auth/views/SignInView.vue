@@ -2,17 +2,24 @@
   <AuthLayout>
     <!-- 좌측 안내 영역 -->
     <template #left>
-      <h2 class="text-3xl font-bold mb-4">Welcome back!</h2>
+      <h2 class="text-3xl font-bold mb-4">안녕하세요!</h2>
       <p class="mb-8 text-sm text-white/70 text-center">
-        Reconnect and explore routes shared by fellow travelers.
+        로그인하고 나만의 Route를 만들어볼까요?
       </p>
     </template>
 
     <!-- 오른쪽 로그인 폼 -->
     <template #right>
-      <div class="flex justify-end text-sm mb-4">
-        <span class="text-gray-600">계정이 없으신가요?</span>
-        <RouterLink to="/signup" class="text-blue-600 hover:underline ml-1">가입하기 →</RouterLink>
+      <div class="flex justify-between items-center mb-6">
+        <RouterLink to="/" class="flex items-center text-blue-600 hover:underline text-sm">
+          <i class="pi pi-home mr-1" />
+          홈으로
+        </RouterLink>
+
+        <div class="text-sm">
+          <span class="text-gray-600">계정이 없으신가요?</span>
+          <RouterLink to="/signup" class="text-blue-600 hover:underline ml-1">가입하기 →</RouterLink>
+        </div>
       </div>
 
       <h1 class="text-2xl font-semibold text-gray-900 mb-6">로그인</h1>
@@ -20,12 +27,12 @@
       <form @submit.prevent="handleLogin" class="space-y-6">
         <div>
           <label for="email" class="block text-sm font-medium text-gray-700">이메일</label>
-          <input id="email" v-model="form.email" type="email" required class="mt-1" />
+          <input id="email" v-model="email" type="email" required class="mt-1" />
         </div>
 
         <div>
           <label for="password" class="block text-sm font-medium text-gray-700">비밀번호</label>
-          <input id="password" v-model="form.password" type="password" required class="mt-1" />
+          <input id="password" v-model="password" type="password" autoComplete="off" required class="mt-1" />
         </div>
 
         <!-- 로그인 버튼 -->
@@ -34,13 +41,6 @@
             class="w-full bg-gray-900 text-white font-medium py-2 rounded hover:bg-gray-800 transition"
         >
           로그인
-        </button>
-        <button
-            type="button"
-            class="w-full bg-gray-900 text-white font-medium py-2 rounded hover:bg-gray-800 transition"
-            @click="onClick"
-        >
-          테스트
         </button>
       </form>
 
@@ -64,24 +64,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink } from 'vue-router';
 import AuthLayout from "@/layouts/AuthLayout.vue";
-import { showAlert } from '@/composables/alert.js'
+import {userLoginForm} from "@/modules/auth/composables/userSigninForm.js";
 
-const onClick = async () => {
-  const result = await showAlert().confirm('테스트 입니다.');
-  console.log(result);
-}
+const {email, password, handleLogin} = userLoginForm();
 
-const form = ref({
-  email: '',
-  password: ''
-})
-
-const handleLogin = () => {
-  alert(`로그인 시도: ${form.value.email}`)
-}
 </script>
 
 <style scoped>

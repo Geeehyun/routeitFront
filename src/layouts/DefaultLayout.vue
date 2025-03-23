@@ -1,10 +1,16 @@
 <template>
   <div class="flex flex-col min-h-screen">
+    <!-- 헤더 -->
     <Header />
+    <!-- // 헤더 -->
+    <!-- 본문 -->
     <main class="flex-1 pt-[60px] px-4 py-6 sm:px-6 md:px-8 bg-white">
       <slot />
     </main>
+    <!-- // 본문 -->
+    <!-- 푸터 -->
     <Footer />
+    <!-- //푸터 -->
   </div>
 </template>
 
