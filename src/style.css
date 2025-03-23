@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@layer base {
+    /* 글꼴 설정 */
+    body {
+        @apply bg-white text-gray-900 text-base antialiased leading-relaxed;
+        font-family: 'Inter', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    }
+
+    /* 뷰포트 전체 사용 */
+    html, body, #app {
+        @apply h-full w-full;
+    }
+
+    /* 모바일에서 글씨 확대 방지 */
+    html {
+        touch-action: manipulation;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    /* 이미지, 비디오 등 미디어 요소 리셋 */
+    img, video {
+        @apply max-w-full h-auto align-middle;
+    }
+
+    /* 버튼, 링크의 기본 스타일 제거 + 모바일 터치 반응 개선 */
+    button, [type='button'], [type='submit'] {
+        @apply bg-transparent border-none cursor-pointer;
+    }
+
+    a {
+        @apply text-inherit no-underline;
+    }
+
+    /* 입력 요소 기본 스타일 개선 */
+    input, textarea, select {
+        @apply appearance-none bg-white text-gray-900 border border-gray-300 rounded-md px-3 py-2 w-full;
+    }
+}
+
+@keyframes gradient-move {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.bg-animated-gradient {
+    background: linear-gradient(135deg, #27CDF2, #132F40, #81abca, #6d7a97, #020659);
+    background-size: 400% 400%;
+    animation: gradient-move 12s ease infinite;
+}
