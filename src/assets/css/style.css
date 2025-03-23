@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import "../../../node_modules/tailwindcss";
 
 @layer base {
     /* 글꼴 설정 */

@@ -1,5 +1,5 @@
 <script setup>
-import axios from "../config/axios.js";
+import axios from "../../../config/axios.js";
 
 const testFn = async () => {
   return await axios.get(`/api/test/index`);
