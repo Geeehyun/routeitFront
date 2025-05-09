@@ -32,7 +32,7 @@ const routes = [
         path: '/board',
         name: 'Board',
         component: () => import('@/modules/board/views/BoardView.vue'),
-        meta: {requiresAuth: true}
+        //meta: {requiresAuth: true}
     }
 ]
 

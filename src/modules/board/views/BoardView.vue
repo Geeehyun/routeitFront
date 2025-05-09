@@ -15,7 +15,6 @@
     <!-- 썸네일 형 (grid view) -->
     <div v-if="viewMode === 'grid'" class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
       <div v-for="post in posts" :key="post.id" class="bg-white rounded shadow hover:shadow-md transition">
-        <img :src="post.thumbnail" alt="thumb" class="w-full h-48 object-cover rounded-t">
         <div class="p-4">
           <h3 class="font-semibold text-lg line-clamp-2">{{ post.title }}</h3>
           <p class="text-sm text-gray-500 mt-1">{{ post.location }} · {{ post.price }}원</p>
@@ -26,7 +25,6 @@
     <!-- 리스트 형 (list view) -->
     <div v-else class="flex flex-col gap-4">
       <div v-for="post in posts" :key="post.id" class="flex gap-4 bg-white rounded shadow p-4 items-center hover:shadow-md transition">
-        <img :src="post.thumbnail" alt="thumb" class="w-28 h-28 object-cover rounded">
         <div>
           <h3 class="font-semibold text-lg line-clamp-2">{{ post.title }}</h3>
           <p class="text-sm text-gray-500 mt-1">{{ post.location }} · {{ post.price }}원</p>
