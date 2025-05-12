@@ -9,9 +9,9 @@ const useAuthStore = defineStore('auth', {
         refreshToken: null
     }),
     actions: {
-        async signIn(email, password) {
+        async signIn(userId, password) {
             try {
-                const res = await signInApi(email, password);
+                const res = await signInApi(userId, password);
                 const accessToken = res.data.accessToken;
                 const refreshToken = res.data.refreshToken;
 

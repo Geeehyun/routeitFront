@@ -1,7 +1,7 @@
 import axios from "@/config/axios.js";
 
-const signInApi = (email, password) => {
-    return axios.post('/api/user/signin', { email, password })
+const signInApi = (userId, password) => {
+    return axios.post('/api/user/public/signin', { userId, password })
 };
 
 const refreshTokenApi = (refreshToken) => {

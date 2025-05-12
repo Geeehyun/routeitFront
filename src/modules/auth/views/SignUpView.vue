@@ -27,8 +27,8 @@
       <form @submit.prevent="handleSignup" class="space-y-6">
         <!-- 이메일 -->
         <div>
-          <label for="email" class="block text-sm font-medium text-gray-700">이메일</label>
-          <input id="email" v-model="form.email" type="email" required class="mt-1" />
+          <label for="userId" class="block text-sm font-medium text-gray-700">이메일</label>
+          <input id="userId" v-model="form.userId" type="email" required class="mt-1" />
         </div>
 
         <!-- 비밀번호 -->
@@ -72,14 +72,14 @@ import { RouterLink } from 'vue-router'
 import AuthLayout from "@/layouts/AuthLayout.vue";
 
 const form = ref({
-  email: '',
+  userId: '',
   password: '',
   name: ''
 })
 
 const handleSignup = () => {
   // 여기에 실제 회원가입 처리 로직 연결
-  alert(`가입됨: ${form.value.name} (${form.value.email})`)
+  alert(`가입됨: ${form.value.name} (${form.value.userId})`)
 }
 </script>
 

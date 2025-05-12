@@ -32,6 +32,11 @@
       </div>
     </div>
   </div>
+
+  <!-- 글쓰기 버튼 (FAB) -->
+  <button class="fixed bottom-24 md:bottom-10 right-6 bg-blue-600 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center text-3xl hover:bg-blue-700 z-50" @click="onWriteClick">
+    +
+  </button>
 </template>
 
 <script setup>

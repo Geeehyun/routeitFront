@@ -26,8 +26,8 @@
 
       <form @submit.prevent="handleLogin" class="space-y-6">
         <div>
-          <label for="email" class="block text-sm font-medium text-gray-700">이메일</label>
-          <input id="email" v-model="email" type="email" required class="mt-1" />
+          <label for="userId" class="block text-sm font-medium text-gray-700">이메일</label>
+          <input id="userId" v-model="userId" type="email" required class="mt-1" />
         </div>
 
         <div>
@@ -68,7 +68,7 @@ import { RouterLink } from 'vue-router';
 import AuthLayout from "@/layouts/AuthLayout.vue";
 import {userLoginForm} from "@/modules/auth/composables/userSigninForm.js";
 
-const {email, password, handleLogin} = userLoginForm();
+const {userId, password, handleLogin} = userLoginForm();
 
 </script>
 
