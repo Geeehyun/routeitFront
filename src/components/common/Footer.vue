@@ -1,11 +1,9 @@
 <template>
   <footer class="bg-white dark:bg-gray-800">
-    <!-- 상단 구분선 -->
-    <div class="border-t border-gray-200 dark:border-gray-700"></div>
 
-    <div class=" max-w-screen-md mx-auto px-4 py-4">
-      <ul class="md:hidden flex justify-around text-sm text-gray-600 dark:text-gray-300 divide-x divide-gray-300 dark:divide-gray-600">
+    <div class="max-w-screen-md mx-auto">
 
+      <ul class="md:hidden fixed bottom-0 left-0 right-0 z-50 px-4 py-4 border-t border-gray-200 dark:border-gray-700 flex justify-around text-sm text-gray-600 dark:text-gray-300 divide-x divide-gray-300 dark:divide-gray-600">
         <li class="flex-1 flex flex-col items-center px-2">
           <RouterLink to="/">
             <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -36,7 +34,7 @@
         </li>
       </ul>
 
-      <p class="hidden md:block mt-4 text-center text-xs text-gray-400 dark:text-gray-500">© 2025 Route it</p>
+      <p class="hidden md:block mt-4 text-center text-xs text-gray-400 dark:text-gray-500 px-4 py-4 border-t border-gray-200 dark:border-gray-700">© 2025 Route it</p>
     </div>
   </footer>
 

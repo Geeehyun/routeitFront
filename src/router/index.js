@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from "@/modules/home/views/HomeView.vue";
 import {useAuthStore} from "@/modules/auth/stores/authStore.js";
 import {jwtDecode} from "jwt-decode";
+import {showAlert} from "@/composables/alert.js";
 
 const routes = [
     {
@@ -33,6 +34,12 @@ const routes = [
         name: 'Board',
         component: () => import('@/modules/board/views/BoardView.vue'),
         //meta: {requiresAuth: true}
+    },
+    {
+        path: '/board/post',
+        name: 'BoardPost',
+        component: () => import('@/modules/board/views/PostWriteView.vue'),
+        meta: {requiresAuth: true}
     }
 ]
 
@@ -48,7 +55,13 @@ router.beforeEach(async (to, from, next) => {
     const isSignedIn = token.accessToken != null;
 
     if (to.meta.requiresAuth && !isSignedIn) {
-        next('/signin')
+        await showAlert().confirm('로그인이 필요한 화면입니다. 로그인 화면으로 이동하시겠습니까?')
+            .then((res) => {
+                if(res) {
+                    auth.signOut();
+                    router.push('/signin');
+                }
+            })
     } else if(to.meta.guestOnly && isSignedIn) {
         next('/');
     } else {
