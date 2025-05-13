@@ -34,18 +34,21 @@
   </div>
 
   <!-- 글쓰기 버튼 (FAB) -->
-  <button class="fixed bottom-24 md:bottom-10 right-6 bg-blue-600 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center text-3xl hover:bg-blue-700 z-50" @click="onWriteClick">
+  <button @click="onWriteClick" class="fixed bottom-24 md:bottom-10 right-6 bg-blue-600 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center text-3xl hover:bg-blue-700 z-50">
     +
   </button>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import router from "@/router/index.js";
 
 const viewMode = ref('grid')
 
 const activeBtn = 'bg-blue-600 text-white px-3 py-1 rounded'
 const inactiveBtn = 'bg-gray-100 text-gray-700 px-3 py-1 rounded hover:bg-gray-200'
+
+
 
 const posts = ref([
   {
