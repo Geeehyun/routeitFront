@@ -36,8 +36,8 @@ const routes = [
         //meta: {requiresAuth: true}
     },
     {
-        path: '/board/post',
-        name: 'BoardPost',
+        path: '/board/write',
+        name: 'PostWrite',
         component: () => import('@/modules/board/views/PostWriteView.vue'),
         meta: {requiresAuth: true}
     }

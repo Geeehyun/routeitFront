@@ -3,7 +3,7 @@
 
     <div class="max-w-screen-md mx-auto">
 
-      <ul class="md:hidden fixed bottom-0 left-0 right-0 z-50 px-4 py-4 border-t border-gray-200 dark:border-gray-700 flex justify-around text-sm text-gray-600 dark:text-gray-300 divide-x divide-gray-300 dark:divide-gray-600">
+      <ul class="md:hidden fixed bg-white bottom-0 left-0 right-0 z-50 px-4 py-4 border-t border-gray-200 dark:border-gray-700 flex justify-around text-sm text-gray-600 dark:text-gray-300 divide-x divide-gray-300 dark:divide-gray-600">
         <li class="flex-1 flex flex-col items-center px-2">
           <RouterLink to="/">
             <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

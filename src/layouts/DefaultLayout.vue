@@ -4,7 +4,7 @@
     <Header />
     <!-- // 헤더 -->
     <!-- 본문 -->
-    <main class="flex-1 pt-[60px] px-4 py-6 sm:px-6 md:px-8 bg-white">
+    <main class="pb-32 flex-1 pt-[60px] px-4 py-6 sm:px-6 md:px-8 bg-white">
       <slot />
     </main>
     <!-- // 본문 -->

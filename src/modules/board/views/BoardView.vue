@@ -41,14 +41,14 @@
 
 <script setup>
 import { ref } from 'vue'
-import router from "@/router/index.js";
+import {postList} from "@/modules/board/composables/postList.js";
 
 const viewMode = ref('grid')
 
 const activeBtn = 'bg-blue-600 text-white px-3 py-1 rounded'
 const inactiveBtn = 'bg-gray-100 text-gray-700 px-3 py-1 rounded hover:bg-gray-200'
 
-
+const onWriteClick = postList().onWriteClick
 
 const posts = ref([
   {

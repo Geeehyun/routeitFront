@@ -1,6 +1,7 @@
 import {defineStore} from "pinia";
 import {refreshTokenApi, signInApi} from "@/modules/auth/api/authApi.js";
 import { isTokenValid } from "@/modules/auth/composables/useToken.js";
+import { jwtDecode } from 'jwt-decode'
 
 const useAuthStore = defineStore('auth', {
     state: () => ({
@@ -12,11 +13,10 @@ const useAuthStore = defineStore('auth', {
         async signIn(userId, password) {
             try {
                 const res = await signInApi(userId, password);
-                const user = res.data.userId;
                 const accessToken = res.data.accessToken;
                 const refreshToken = res.data.refreshToken;
 
-                this.setTokens(user, accessToken, refreshToken);
+                this.setTokens(accessToken, refreshToken);
 
                 return true;
             } catch (e) {
@@ -29,13 +29,11 @@ const useAuthStore = defineStore('auth', {
             this.clearTokens();
         },
         reloadToken() {
-            if (!this.user || !this.accessToken || !this.refreshToken) {
-                const user = sessionStorage.getItem('user');
+            if (!this.accessToken || !this.refreshToken) {
                 const accessToken = sessionStorage.getItem('accessToken');
                 const refreshToken = sessionStorage.getItem('refreshToken');
-                if (user || accessToken || refreshToken) {
+                if (accessToken || refreshToken) {
                     console.log('[auth.reloadToken] Reloaded token from sessionStorage');
-                    this.user = user;
                     this.accessToken = accessToken;
                     this.refreshToken = refreshToken;
                 }
@@ -43,16 +41,16 @@ const useAuthStore = defineStore('auth', {
         },
         async refreshAccessToken() {
             try {
-                const user = this.user;
+                const payload = jwtDecode(this.accessToken);
+                const userId = payload.userId;
                 const token = this.refreshToken;
-                if(!user || !token) return false;
+                if(!token) return false;
 
-                const res = await refreshTokenApi(user, token);
-                const newUser = res.data.userId;
+                const res = await refreshTokenApi(userId, token);
                 const newAccessToken = res.data.accessToken;
                 const newRefreshToken = res.data.refreshToken;
 
-                this.setTokens(newUser, newAccessToken, newRefreshToken);
+                this.setTokens(newAccessToken, newRefreshToken);
 
                 return true;
             } catch (e) {
@@ -60,24 +58,21 @@ const useAuthStore = defineStore('auth', {
                 return false;
             }
         },
-        setTokens(user, accessToken, refreshToken) {
+        setTokens(accessToken, refreshToken) {
             if(accessToken.indexOf('Bearer') > -1) {
                 accessToken = accessToken.substring(7);
             }
             if(refreshToken.indexOf('Bearer') > -1) {
                 refreshToken = refreshToken.substring(7);
             }
-            this.user = user;
             this.accessToken = accessToken;
             this.refreshToken = refreshToken;
-            sessionStorage.setItem('user', user);
             sessionStorage.setItem('accessToken', accessToken);
             sessionStorage.setItem('refreshToken', refreshToken);
         },
         clearTokens() {
             this.accessToken = null;
             this.refreshToken = null;
-            sessionStorage.removeItem('user');
             sessionStorage.removeItem('accessToken');
             sessionStorage.removeItem('refreshToken');
         },
