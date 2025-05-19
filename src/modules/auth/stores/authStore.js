@@ -41,6 +41,9 @@ const useAuthStore = defineStore('auth', {
         },
         async refreshAccessToken() {
             try {
+                if(!this.accessToken){
+                    return false;
+                }
                 const payload = jwtDecode(this.accessToken);
                 const userId = payload.userId;
                 const token = this.refreshToken;
@@ -76,11 +79,24 @@ const useAuthStore = defineStore('auth', {
             sessionStorage.removeItem('accessToken');
             sessionStorage.removeItem('refreshToken');
         },
-        async getToken() {
+        async getToken(retry = true) {
             if (!isTokenValid(this.accessToken)) {
-                this.clearTokens();
-                // await this.refreshAccessToken();
+                if (retry) {
+                    // 토큰 갱신 시도
+                    await this.refreshAccessToken();
+
+                    // 갱신 후 다시 getToken 호출 (재귀)
+                    return this.getToken(false);
+                } else {
+                    // 갱신 후에도 실패하면 토큰 클리어
+                    this.clearTokens();
+                    return {
+                        accessToken: null,
+                        refreshToken: null
+                    };
+                }
             }
+            // 토큰이 유효하면 반환
             return {
                 accessToken: this.accessToken,
                 refreshToken: this.refreshToken

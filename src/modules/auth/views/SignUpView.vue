@@ -45,7 +45,45 @@
           <label for="name" class="block text-sm font-medium text-gray-700">이름</label>
           <input id="name" v-model="form.name" type="text" required class="mt-1" />
           <p class="mt-1 text-xs text-gray-500">
-            닉네임이나 실명을 입력해주세요.
+            실명을 입력해주세요.
+          </p>
+        </div>
+
+        <!-- 닉네임 -->
+        <div>
+          <label for="nickname" class="block text-sm font-medium text-gray-700">닉네임</label>
+          <input id="nickname" v-model="form.nickname" type="text" required class="mt-1" />
+        </div>
+
+        <!-- 연령대 -->
+        <div>
+          <label for="ageRange" class="appearance-auto block text-sm font-medium text-gray-700">연령대</label>
+          <select id="ageRange" name="ageRange" v-model="form.ageRange" required class=" appearance-auto mt-1 w-full">
+            <option selected value>선택</option>
+            <option value="10">10대</option>
+            <option value="20">20대</option>
+            <option value="30">30대</option>
+            <option value="40">40대</option>
+            <option value="50">50대 이상</option>
+          </select>
+        </div>
+
+        <!-- 성별 -->
+        <div>
+          <label for="gender" class="block text-sm font-medium text-gray-700">성별</label>
+          <select id="gender" name="gender" v-model="form.gender" required class="mt-1 w-full">
+            <option selected value="">선택</option>
+            <option value="M">남성</option>
+            <option value="F">여성</option>
+          </select>
+        </div>
+
+        <!-- 연락처 -->
+        <div>
+          <label for="phone" class="block text-sm font-medium text-gray-700">연락처</label>
+          <input id="phone" v-model="form.phone" type="tel" required class="mt-1" placeholder="010-0000-0000" />
+          <p class="mt-1 text-xs text-gray-500">
+            연락 가능한 휴대폰 번호를 입력해주세요.
           </p>
         </div>
 
@@ -67,20 +105,11 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { RouterLink } from 'vue-router'
 import AuthLayout from "@/layouts/AuthLayout.vue";
+import {userSignupForm} from "@/modules/auth/composables/userSignupForm.js";
 
-const form = ref({
-  userId: '',
-  password: '',
-  name: ''
-})
+const {form, handleSignup} = userSignupForm();
 
-const handleSignup = () => {
-  // 여기에 실제 회원가입 처리 로직 연결
-  alert(`가입됨: ${form.value.name} (${form.value.userId})`)
-}
 </script>
 
 <style scoped>

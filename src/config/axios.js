@@ -46,6 +46,8 @@ function addFailedQueue(callback){
 instance.interceptors.response.use(
     (response) => response.data, // 바로 data만 넘기게!
     async (error) => {
+
+        console.log(error)
         const auth = useAuthStore();
         const router = useRouter();
         const originalRequest = error.config;
